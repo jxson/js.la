@@ -1,8 +1,11 @@
 {
   "name": "js.la",
+  "homepage": "http://js.la/",
   "version": "0.0.0",
-  "description": "Source code for the site hosted at js.la",
+  "description": "Source code for http://js.la",
   "main": "lib/index.js",
+  "bin": "./bin/js.la",
+  "bugs": "https://github.com/jsla/js.la/issues",
   "scripts": {
     "test": "foo"
   },
@@ -10,6 +13,15 @@
     "type": "git",
     "url": "git://github.com/jsla/js.la.git"
   },
-  "author": "JSLA",
-  "license": "MIT"
+  "contributors": [
+    { "name" : "Jason Campbell"
+    , "email" : "jason@js.la"
+    , "url" : "http://theneonglow.com"
+    }
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "command-router": "0"
+  },
+  "devDependencies": {}
 }

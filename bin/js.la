@@ -1,0 +1,23 @@
+#!/usr/bin/env node
+
+var cli = require('command-router')
+
+cli.command('', function(){
+  console.log('default')
+})
+
+cli.command('help', function(){
+  console.log('help')
+})
+
+cli.command('server', function(){
+  if (cli.options.help) return console.log('help server')
+})
+
+// Catch all, save this for last
+cli.command('*', function(){
+  console.log('catch all')
+  process.exit(1)
+})
+
+cli.parse(process.argv)
