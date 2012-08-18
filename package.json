@@ -23,5 +23,7 @@
   "dependencies": {
     "command-router": "0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "mocha": "1.3.2"
+  }
 }
