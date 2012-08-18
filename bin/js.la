@@ -1,23 +1,42 @@
 #!/usr/bin/env node
 
 var cli = require('command-router')
+  , directories = require('../lib/directories')
+  , path = require('path')
+  , fs = require('fs')
+  , help
+  , helpfulFailure
 
-cli.command('', function(){
-  console.log('default')
-})
+help = function(name, callback){
+  var name = name || 'index'
+    , callback = callback || function(){}
+    , file = path.join(directories.doc, 'cli', name + '.md')
+    , stream = fs.createReadStream(file, { encoding: 'utf8' })
 
-cli.command('help', function(){
-  console.log('help')
-})
+  stream.on('data', console.log)
+
+  stream.on('error', function(err){
+    console.error(err)
+    process.exit(1)
+  })
+
+  stream.on('end', callback)
+}
+
+helpfulFailure = function(){
+  help('index', function(){
+    process.exit(1)
+  })
+}
+
+cli.command('', helpfulFailure)
+cli.command('help', help)
 
 cli.command('server', function(){
-  if (cli.options.help) return console.log('help server')
+  if (cli.options.help) return help('server')
 })
 
-// Catch all, save this for last
-cli.command('*', function(){
-  console.log('catch all')
-  process.exit(1)
-})
+// Catch all, save this for last. It will show the general help then exit 1
+cli.command('*', helpfulFailure)
 
 cli.parse(process.argv)
