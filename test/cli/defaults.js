@@ -5,51 +5,42 @@ var assert = require('assert')
   , bin = path.join(directories.bin, 'js.la')
   , exec = require('child_process').exec
   , fs = require('fs')
+  , run
+
+function run(command, callback){
+  var command = command || ''
+    , callback = callback || function(){}
+
+  if (typeof(command) === 'function') {
+    callback = command
+    command = ''
+  }
+
+  exec(bin + ' ' + command, callback)
+}
 
 describe('cli', function(){
   describe('empty command', function(){
-    var args
-
-    before(function(done){
-      exec(bin, function(err, stdout, stderr){
-        args =  { err: err
-                , stdout: stdout
-                , stderr: stderr
-                }
+    it('`process.exit(1)` with help on `stdout`', function(done){
+      run(function(err, stdout, stderr){
+        assert(err, 'Missing error')
+        assert.equal(err.code, 1, 'should `process.exit(1)`')
+        assert(stdout, 'no help spilled to `stdout`')
 
         done()
       })
-    })
-
-    it('shows the cli help', function(){
-      assert(args.stdout, 'no help spilled to `stdout`')
-    })
-
-    it('exits 1', function(){
-      assert.equal(args.err.code, 1, 'should `process.exit(1)`')
     })
   })
 
   describe('bogus command', function(){
-    var args
-
-    before(function(done){
-      exec(bin + ' bogus', function(err, stdout, stderr){
-        args =  { err: err
-                , stdout: stdout
-                , stderr: stderr
-                }
+    it('`process.exit(1)` with help on `stdout`', function(done){
+      run('bogus', function(err, stdout, stderr){
+        assert(err, 'Missing error')
+        assert.equal(err.code, 1, 'should `process.exit(1)`')
+        assert(stdout, 'no help spilled to `stdout`')
 
         done()
       })
-    })
-
-    it('shows the cli help', function(){
-      assert(args.stdout, 'no help spilled to `stdout`')
-    })
-
-    it('exits 1', function(){
-      assert.equal(args.err.code, 1, 'should `process.exit(1)`')
     })
   })
 })
