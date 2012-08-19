@@ -4,6 +4,8 @@ var cli = require('command-router')
   , directories = require('../lib/directories')
   , path = require('path')
   , fs = require('fs')
+  , master = require('../lib/master')
+  , cpus = require('os').cpus()
   , help
   , helpfulFailure
 
@@ -34,6 +36,11 @@ cli.command('help', help)
 
 cli.command('server', function(){
   if (cli.options.help) return help('server')
+
+  master.run({ workers: cli.options.workers || cpus.length
+  , port: cli.options.port || 8080
+  , host: cli.options.host || 'localhost'
+  })
 })
 
 // Catch all, save this for last. It will show the general help then exit 1

@@ -1,5 +1,7 @@
+js.la server -- Run the js.la server
+====================================
 
-# USAGE
+# SYNOPSIS
 
     js.la <command> [args]
 
