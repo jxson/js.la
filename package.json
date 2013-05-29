@@ -1,0 +1,31 @@
+{
+  "name": "js.la",
+  "version": "0.0.0",
+  "description": "The node.js source code for http://js.la",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/**/test-*.js --reporter dot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jsla/js.la.git"
+  },
+  "keywords": [
+    "jsla",
+    "usergroup"
+  ],
+  "author": "",
+  "license": "MIT",
+  "gitHead": "e19c7262ef0dc981b7d792f675fb057314a6c593",
+  "bugs": {
+    "url": "https://github.com/jsla/js.la/issues"
+  },
+  "devDependencies": {
+    "mocha": "~1.10.0",
+    "supertest": "~0.6.0"
+  },
+  "dependencies": {
+    "error-page": "0.0.6",
+    "routes": "~0.2.0"
+  }
+}
