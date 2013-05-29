@@ -4,7 +4,8 @@
   "description": "The node.js source code for http://js.la",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/**/test-*.js --reporter dot"
+    "test": "mocha test/**/test-*.js --reporter dot",
+    "start": "node lib/start.js"
   },
   "repository": {
     "type": "git",
