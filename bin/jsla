@@ -1,0 +1,33 @@
+#!/usr/bin/env node
+
+var cli = require('command-router')
+
+
+cli.option({ name: 'port'
+, alias: 'p'
+, type: Number
+})
+
+cli.option({ name: 'host'
+, type: String
+})
+
+cli.option({ name: 'log-level'
+, alias: 'l'
+, type: String
+})
+
+cli.command('server', function(){
+  var server = require('../lib/server')
+    , config = require('../lib/config')
+
+  Object.keys(cli.options).forEach(function(k){
+    // predefined options if not set by args will be falsey
+    if (cli.options[k]) config.set(k, cli.options[k])
+  })
+
+  server.listen(config.get('port'), config.get('host'))
+
+})
+
+cli.parse(process.argv)

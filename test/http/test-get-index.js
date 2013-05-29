@@ -1,10 +1,11 @@
 
 var server = require('../../lib/server')
+  , config = require('../../lib/config')
   , request = require('supertest')
 
 describe('GET /', function(){
   before(function(){
-    server.logger.level('fatal')
+    config.set('log-level', 'fatal')
   })
 
   it('should respond with html', function(done){

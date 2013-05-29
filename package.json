@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha test/**/test-*.js --reporter dot",
-    "start": "node lib/start.js"
+    "start": "./bin/jsla server"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "error-page": "0.0.6",
-    "routes": "~0.2.0"
+    "routes": "~0.2.0",
+    "command-router": "0.0.5"
   }
 }
