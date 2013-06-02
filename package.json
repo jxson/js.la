@@ -33,6 +33,8 @@
     "beardo": "0.0.10",
     "browserify": "~2.17.2",
     "bunyan": "~0.21.3",
-    "domready": "~0.2.11"
+    "domready": "~0.2.11",
+    "nano": "~3.3.8",
+    "node-uuid": "~1.4.0"
   }
 }
